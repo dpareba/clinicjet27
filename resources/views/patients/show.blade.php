@@ -40,7 +40,7 @@ View/Edit Patients Details
   </div>
   <div class="col-md-3">
    
-    <a href="{{URL::route('patients.createconsult',['id'=>$patient->id,'repeatvisitid'=>'0'])}}" class="btn btn-success btn-block">New Patient Consultation</a>
+    <a href="{{URL::route('patients.createconsult',['id'=>$patient->id,'repeatvisitid'=>'0','editconsult'=>'false'])}}" class="btn btn-success btn-block">New Patient Consultation</a>
   </div>
   <div class="col-md-3">
     <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>

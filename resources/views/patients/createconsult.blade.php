@@ -87,7 +87,12 @@ Add Consultation for Patient Visit
 		<div class="col-md-12">
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs bg-gray">
-					<li class="active"><a href="#new" data-toggle="tab">New</a></li>
+					@if ($editconsult=="false")
+						<li class="active"><a href="#new" data-toggle="tab">New</a></li>
+					@else
+						<li class="active"><a href="#new" data-toggle="tab">Edit</a></li>
+					@endif
+					
 					<?php $countheader=1; ?>
 					@foreach ($patient->visits as $visit)
 					
@@ -116,7 +121,15 @@ Add Consultation for Patient Visit
 									</div>
 									<!-- /.box-header -->
 									<div class="box-body">
-										<form data-parsley-validate id="consult" action="{{route('visits.storelocal')}}" method="POST" data-toggle="validator">
+										
+										
+										@if ($editconsult=="false")
+											<form data-parsley-validate id="consult" action="{{route('visits.storelocal')}}" method="POST" data-toggle="validator">
+										@else	
+											<form data-parsley-validate id="consult" action="{{route('visits.update',$repeatid)}}" method="POST" data-toggle="validator">
+											<input type="hidden" name="_method" value="PUT">
+										@endif
+										
 											{{csrf_field()}}
 											<input type="hidden" name="patient_id" value="{{$patient->id}}">
 											<input type="hidden" id="repeatid" value="{{$repeatid}}">
@@ -734,9 +747,15 @@ Add Consultation for Patient Visit
 							
 
 							<div class="box-footer clearfix">
+								@if ($editconsult=="false")
+									<button type="submit" class="btn btn-success pull-right"><i class="fa fa-check-square-o"></i> Save Consultation
+									</button>
+								@else
+								{{-- <div>{{$repeatid}}</div> --}}
+									<button type="submit" class="btn btn-warning pull-right"><i class="fa fa-check-square-o"></i> Edit and Save Consultation
+									</button>
+								@endif
 								
-								<button type="submit" class="btn btn-success pull-right"><i class="fa fa-check-square-o"></i> Save Consultation
-								</button>
 								<a href="{{route('patients.show',$patient->id)}}" class="btn btn-danger pull-right" style="margin-right: 5px;">
 									<i class="fa fa-times"></i> Cancel
 								</a>
@@ -774,11 +793,22 @@ Add Consultation for Patient Visit
 													{{-- <input type="hidden" name="visitid" value="{{$visit->id}}">
 													<button type="submit" class="btn btn-xs btn-warning">Repeat All</button> --}}
 
-													<a href="{{URL::route('patients.createconsult',['id'=>$patient->id,'repeatvisitid'=>$visit->id])}}"  class="btn btn-xs btn-warning">Repeat All</a> <span class="text-red"><i>Using this feature would refresh and reset all values added in the new consultation</i></span>
+													<a href="{{URL::route('patients.createconsult',['id'=>$patient->id,'repeatvisitid'=>$visit->id,'editconsult'=>'false'])}}"  class="btn btn-xs btn-warning">Repeat All</a> <span class="text-red"><i>Using this feature would refresh and reset all values added in the new consultation</i></span>
 												</div>
 
 											</div>
 											<br>
+
+											@if (Auth::user()->id == $visit->user_id)
+												@if ($visit->created_at->diffInHours(Carbon::now()) <= 36)
+													<div class="row">
+														<div class="col-md-12">
+															<a href="{{URL::route('patients.createconsult',['id'=>$patient->id,'repeatvisitid'=>$visit->id,'editconsult'=>'true'])}}" class="btn btn-xs btn-success">Edit Consultation</a>
+														</div>
+													</div>
+												@endif
+											@endif
+
 											<span class="badge bg-gray pull-right">Consultant: DR. {{$visit->user->name}}</span>
 											<dl>
 												<dt>Chief Complaints</dt>

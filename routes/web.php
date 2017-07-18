@@ -111,7 +111,7 @@ Route::post('patients/showVisits',[
 // 	'as'=>'patients.createconsult',
 // 	'uses'=>'PatientController@createconsult'
 // 	]);
-Route::get('patients/createconsult/{id}/{repeatvisitid}',[
+Route::get('patients/createconsult/{id}/{repeatvisitid}/{editconsult}',[
 	'as'=>'patients.createconsult',
 	'uses'=>'PatientController@createconsult'
 	]);

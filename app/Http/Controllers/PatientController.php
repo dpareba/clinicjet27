@@ -234,7 +234,8 @@ class PatientController extends Controller
         return view('visits.show')->withPatient($patient)->withUser($user);
     }
 
-    public function createconsult($id,$repeatvisitid){
+    public function createconsult($id,$repeatvisitid,$editconsult){
+        //dd($editconsult);
         $patient = Patient::findOrFail($id);
         if ($repeatvisitid!=0) {
             $repeatid = $repeatvisitid;
@@ -332,7 +333,7 @@ class PatientController extends Controller
         ->dataset('BMI',$bmidata->pluck('bmi'))
         ->responsive(false);
 
-        return view('patients.createconsult')->withPatient($patient)->withUser($user)->withPathologies($pathologies)->withBpchart($bpchart)->withRandombschart($randombschart)->withPulsechart($pulsechart)->withRespratechart($respratechart)->withSpochart($spochart)->withWeightchart($weightchart)->withHeightchart($heightchart)->withBmichart($bmichart)->withTemplates($templates)->withRepeatid($repeatid);
+        return view('patients.createconsult')->withPatient($patient)->withUser($user)->withPathologies($pathologies)->withBpchart($bpchart)->withRandombschart($randombschart)->withPulsechart($pulsechart)->withRespratechart($respratechart)->withSpochart($spochart)->withWeightchart($weightchart)->withHeightchart($heightchart)->withBmichart($bmichart)->withTemplates($templates)->withRepeatid($repeatid)->withEditconsult($editconsult);
     }
 
 
