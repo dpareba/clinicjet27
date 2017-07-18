@@ -121,7 +121,7 @@ Route::get('videocall/initiate',[
 	'uses'=>'VideoController@initiateVideoCall'
 	]);
 
-Route::get('printvisit/{id}',[
+Route::get('printvisit/{id}/{printall}',[
 	'as'=>'print.visits',
 	'uses'=>'PrintController@printVisit'
 	]);

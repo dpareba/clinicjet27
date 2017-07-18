@@ -71,9 +71,12 @@
 		@endif --}}
 	</div>
 	<div>Patient Name: <b>{{$visit->patient->name}} {{$visit->patient->midname}} {{$visit->patient->surname}}</b></div><br>
-	{{-- <div class="cc"><b>Chief Complaints: </b>{{$visit->chiefcomplaints}}</div>
-	<div class="cc"><b>Findings: </b>{{$visit->examinationfindings}}</div>
-	<div class="cc"><b>History: </b>{{$visit->patienthistory}}</div> --}}
+	@if ($printall=="true")
+		<div class="cc"><b>Chief Complaints: </b>{{$visit->chiefcomplaints}}</div>
+		<div class="cc"><b>Findings: </b>{{$visit->examinationfindings}}</div>
+		<div class="cc"><b>History: </b>{{$visit->patienthistory}}</div>
+	@endif
+	
 	<div class="cc"><b>Diagnosis: </b>{{$visit->diagnosis}}</div>
 	<div class="cc"><b>Advise: </b>{{$visit->advise}}</div><br>
 	<div class="absolute"><b>Follow Up Date: </b>

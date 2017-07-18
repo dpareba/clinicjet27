@@ -934,7 +934,8 @@ Add Consultation for Patient Visit
 
 											@if (Auth::user()->id == $visit->user_id)
 											<div class="box-footer clearfix">
-												<a href="{{route('print.visits',$visit->id)}}" class="btn btn btn-success  pull-right"  target="_blank">Print</a>
+												<a href="{{route('print.visits',['id'=>$visit->id,'printall'=>'true'])}}" class="btn btn btn-success "  target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Print All</a>
+												<a href="{{route('print.visits',['id'=>$visit->id,'printall'=>'false'])}}" class="btn btn btn-warning "  target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Print (Diagnosis & Advise)</a>
 											</div>{{-- expr --}}
 											@endif
 										</div>{{-- .box-body --}}

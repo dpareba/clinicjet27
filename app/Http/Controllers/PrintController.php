@@ -91,10 +91,11 @@ class PrintController extends Controller
         return redirect()->route('print.index');
     }
 
-    public function printVisit($id){
+    public function printVisit($id,$printall){
+        //dd($printall);
         $clinic = Clinic::where(['cliniccode'=>Session::get('cliniccode')])->first();
         $visit = Visit::find($id);
-        $pdf = PDF::loadView('print.visit',['visit'=>$visit,'clinic'=>$clinic],[],[
+        $pdf = PDF::loadView('print.visit',['visit'=>$visit,'clinic'=>$clinic,'printall'=>$printall],[],[
             'watermark'=> 'Dilip Pareba',
             'title'=> 'Laravel mPDF',
             'show_watermark'=> false,
