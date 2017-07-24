@@ -91,6 +91,7 @@
 	<table>
 		<thead>
 			<tr>
+				<th>Sr. No</th>
 				<th>Brand Name</th>
 				<th>Regime
 				<br><small><i>(Mor/Aft/Ngt)</i></small>
@@ -101,8 +102,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			<?php $count=1; ?>
 			@foreach ($visit->prescriptions as $p)
 			<tr>
+			<td>{{$count}}.</td>
 				<td><b>{{$p->medicinename}}</b><br>
 					@if ($p->medicinecomposition!='')
 					<small><i>({{$p->medicinecomposition}})</i></small>
@@ -114,6 +117,7 @@
 				<td>{{$p->doseduration}}</td>
 				<td>{{$p->remarks}}</td>
 			</tr>
+			<?php $count++; ?>
 			@endforeach
 			
 		</tbody>
