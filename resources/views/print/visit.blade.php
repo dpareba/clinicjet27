@@ -112,36 +112,10 @@
 					@endif
 
 				</td>
-				<?php 
-				$splitreg=explode('-',$p->doseregime);
-				$dosemorning = $splitreg[0];
-				if($dosemorning=="1/2"){
-					$dosemorning = "&#189;";
-				}elseif($dosemorning=="1/4"){
-					$dosemorning = "&#188;";
-				}elseif($dosemorning=="3/4"){
-					$dosemorning = "&#190;";
-				}
-				$doseafternoon = $splitreg[1];
-				if($doseafternoon=="1/2"){
-					$doseafternoon = "&#189;";
-				}elseif($doseafternoon=="1/4"){
-					$doseafternoon = "&#188;";
-				}elseif($doseafternoon=="3/4"){
-					$doseafternoon = "&#190;";
-				}
-				$dosenight = $splitreg[2];
-				if($dosenight=="1/2"){
-					$dosenight = "&#189;";
-				}elseif($dosenight=="1/4"){
-					$dosenight = "&#188;";
-				}elseif($dosenight=="3/4"){
-					$dosenight = "&#190;";
-				}
-				 ?>
-				{{-- <td>{{$p->doseregime}}</td> --}}
-				{{-- <td>&#189;-1-1</td> --}}
-				<td>{{$dosemorning}} - {{$doseafternoon}} - {{$dosenight}}</td>
+				
+				<td>{{$p->doseregime}}</td>
+				
+				
 				<td>{{$p->dosetimings}}</td>
 				<td>{{$p->doseduration}}</td>
 				<td>{{$p->remarks}}</td>
